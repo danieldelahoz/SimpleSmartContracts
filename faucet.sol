@@ -2,34 +2,34 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
-import '//insert token contract here';
+import ''; //insert token contract here
 
 
 
 contract Faucet {
 
 
-    srch public token;
+    srch public token;      //"srch" must be changed to reflect your token contract
     bool public activeFaucet;
-    mapping(address => bool) public hasClaimed;
+    mapping(address => bool) public hasClaimed;         //map addresses to determine if it has been claimbed later in the code
 
-    function activateFaucet() public {
-    activeFaucet = true;
+    function activateFaucet() public {      //function to power on the fuacet
+    activeFaucet = true;        //must remain true
   }
 
 
-  function deactivateFaucet() public {
-    activeFaucet = false;
+  function deactivateFaucet() public {          //function to power off the faucet
+    activeFaucet = false;           //must remain false
   }
 
-    function drip(address _tokenAddr) public {
-        token = srch(_tokenAddr);
+    function drip(address _tokenAddr) public {          //function to use the faucet
+        token = srch(_tokenAddr);        //replace srch to reflect your token contract
     }
 
-    function getAirdrop() public {
-        require(activeFaucet = true);
-        require(hasClaimed[msg.sender] == false);
-        token.transfer(msg.sender, 10000000000000000000000);
-        hasClaimed[msg.sender] == true;
+    function getAirdrop() public {      //function to receive airdrop
+        require(activeFaucet = true);       //requires faucet to be active
+        require(hasClaimed[msg.sender] == false);       // hasClaimed must be false. User's who have claimed will not be able to claim.
+        token.transfer(msg.sender, 10000000000000000000000);        //initiate token transfer, change to desired amount.)
+        hasClaimed[msg.sender] == true;         //hasClaimed = true is mapped for the address, they are no longer able to use the faucet.
     }
 }
